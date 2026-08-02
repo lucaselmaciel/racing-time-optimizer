@@ -60,3 +60,11 @@ aproximados de massa, potência, grip mecânico e downforce por categoria.
 Para adicionar outra pista, coloque um CSV no formato TUM
 (`x_m, y_m, w_tr_right_m, w_tr_left_m`) em `data/tracks/` e rode `python -m app.seed`
 de novo — o seed é idempotente.
+
+## Prints
+
+<img width="1115" height="988" alt="image" src="https://github.com/user-attachments/assets/65a6d3bb-2b81-404f-aeaf-657df095007e" />
+
+<img width="1114" height="990" alt="image" src="https://github.com/user-attachments/assets/43023b4f-4bba-4a7b-8b2a-8a90e1e19f5c" />
+
+
