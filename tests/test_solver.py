@@ -25,7 +25,6 @@ def centerline_raceline(track, n_ctrl=24):
 
 
 def test_circle_steady_state(circle_track):
-    """Num círculo, a velocidade converge para v = sqrt(a_lat_max · R)."""
     raceline = centerline_raceline(circle_track)
     vehicle = make_vehicle()
     result = solve(vehicle, raceline)
@@ -59,12 +58,10 @@ def test_more_power_is_faster_on_real_track():
 
 
 def test_silverstone_laptime_plausible():
-    """Center line de Silverstone com carro tipo GT: lap time numa faixa sã."""
     x, y, w_right, w_left = load_track_csv("data/tracks/silverstone.csv")
     track = build_track(x, y, w_right, w_left)
     s_ctrl = np.linspace(0.0, track.length, 60, endpoint=False)
     raceline = raceline_from_alphas(track, s_ctrl, np.zeros(60), n_samples=1000)
     vehicle = make_vehicle(mass=1300.0, power=370_000.0, a_lat_max=14.0, cd_a=1.0, crr=0.012, v_max=85.0)
     result = solve(vehicle, raceline)
-    # Volta real de GT em Silverstone: ~2min. Faixa larga: modelo simplificado.
     assert 90.0 < result.lap_time < 200.0

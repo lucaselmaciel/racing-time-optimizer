@@ -31,7 +31,7 @@ def test_load_factor_grows_with_speed():
     v = make_vehicle(cl_a=3.5)
     assert v.load_factor(0.0) == 1.0
     lf_70 = float(v.load_factor(70.0))
-    assert lf_70 > 2.0  # em ~250 km/h o downforce mais que dobra o grip
+    assert lf_70 > 2.0
     assert float(v.a_lat_at(70.0)) > 2.0 * v.a_lat_max
 
 
@@ -45,7 +45,6 @@ def test_downforce_faster_in_corners(circle_track):
 
 
 def test_grip_speed_fixed_point_converges(circle_track):
-    """v em curva com downforce satisfaz v²·|κ| ≈ a_lat(v) (regime permanente)."""
     s_ctrl = np.linspace(0.0, circle_track.length, 24, endpoint=False)
     raceline = raceline_from_alphas(circle_track, s_ctrl, np.zeros(24))
     vehicle = make_vehicle(cl_a=2.0, v_max=200.0)

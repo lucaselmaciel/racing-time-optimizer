@@ -11,10 +11,8 @@ from engine import (
 
 
 def test_circle_pushes_outward(circle_track):
-    """Num círculo, a curvatura mínima é o maior raio possível: alphas no
-    limite externo (normal aponta para fora → alpha positivo)."""
     s_ctrl, alphas = optimize_min_curvature(circle_track, n_stations=200, n_ctrl=24)
-    assert np.all(alphas > 3.0)  # largura 5 m, margem 1 m → limite em 4 m
+    assert np.all(alphas > 3.0)
 
 
 def test_respects_track_bounds(circle_track):

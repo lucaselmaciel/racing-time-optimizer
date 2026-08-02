@@ -10,7 +10,6 @@ router = APIRouter(prefix="/api/optimize", tags=["optimize"])
 
 @router.post("", response_model=schemas.OptimizeResponse)
 def optimize_trajectory(payload: schemas.OptimizeRequest, db: Session = Depends(get_db)):
-    """Traçado de curvatura mínima (QP) + lap time do resultado."""
     track_row = db.get(models.Track, payload.track_id)
     if track_row is None:
         raise HTTPException(404, "pista não encontrada")
