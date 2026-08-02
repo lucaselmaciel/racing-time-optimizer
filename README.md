@@ -60,13 +60,3 @@ aproximados de massa, potência, grip mecânico e downforce por categoria.
 Para adicionar outra pista, coloque um CSV no formato TUM
 (`x_m, y_m, w_tr_right_m, w_tr_left_m`) em `data/tracks/` e rode `python -m app.seed`
 de novo — o seed é idempotente.
-
-## Estado atual / próximos passos
-
-Fases 2–4 do roadmap implementadas: motor QSS, interatividade, otimizador de
-curvatura mínima (linearização `κ(α) ≈ κ_c − κ_c²·α − α''`, mínimos quadrados com
-caixa via `lsq_linear`) e GGV dependente de velocidade via downforce. Pendente:
-
-- Curva de torque e marchas no modelo de veículo — resto da Fase 4
-- Importação OSM, pneus Pacejka, validação FastF1 — Fase 5
-- Latência do drag (~30 ms) pode ser reduzida vetorizando o solver se quisermos os <16 ms do requisito
