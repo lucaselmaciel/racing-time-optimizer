@@ -1,0 +1,26 @@
+[project]
+name = "trajectory-optimizer"
+version = "0.1.0"
+description = "Racing line optimizer — cálculo interativo de traçado e tempo de volta"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    "numpy>=2.0",
+    "scipy>=1.14",
+    "pydantic-settings>=2.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["engine*", "app*"]

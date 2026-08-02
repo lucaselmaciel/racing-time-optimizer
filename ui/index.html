@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Racing Line Optimizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Racing Line Optimizer</h1>
+    <div class="hero">
+      <span class="hero-label">Tempo de volta</span>
+      <span class="hero-value" id="lap-time">—</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="canvas-panel">
+      <div class="track-wrap">
+        <canvas id="track-canvas"></canvas>
+        <div class="zoom-controls">
+          <button id="zoom-in" title="Aproximar">+</button>
+          <button id="zoom-out" title="Afastar">−</button>
+          <button id="zoom-reset" title="Enquadrar pista">⌂</button>
+        </div>
+      </div>
+      <p class="hint">Clique na pista cria ponto · arraste ajusta · duplo clique remove · roda do mouse dá zoom · botão direito arrasta a visão</p>
+      <div class="chart-panel">
+        <div class="chart-head">
+          <h2>Perfil de velocidade</h2>
+          <div class="legend">
+            <span class="legend-item"><i class="swatch swatch-v"></i>velocidade</span>
+            <span class="legend-item"><i class="swatch swatch-grip"></i>limite de grip</span>
+          </div>
+        </div>
+        <canvas id="speed-canvas"></canvas>
+        <div id="chart-tooltip" class="tooltip" hidden></div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="field">
+        <label for="track-select">Pista</label>
+        <select id="track-select"></select>
+      </div>
+
+      <div class="field">
+        <label for="trajectory-select">Traçado salvo</label>
+        <select id="trajectory-select"></select>
+        <div class="row">
+          <input type="text" id="trajectory-name" placeholder="nome do traçado">
+          <button id="save-trajectory">Salvar</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="vehicle-select">Veículo</label>
+        <select id="vehicle-select"></select>
+      </div>
+
+      <button id="optimize" class="primary">⏱ Otimizar traçado</button>
+
+      <fieldset id="vehicle-params">
+        <legend>Configuração do veículo</legend>
+        <div class="param"><label>Massa (kg)</label><input type="number" step="10" data-param="mass"></div>
+        <div class="param"><label>Potência (kW)</label><input type="number" step="10" data-param="power_kw"></div>
+        <div class="param"><label>Aceleração máx (m/s²)</label><input type="number" step="0.5" data-param="a_accel_max"></div>
+        <div class="param"><label>Frenagem máx (m/s²)</label><input type="number" step="0.5" data-param="a_brake_max"></div>
+        <div class="param"><label>Grip lateral (m/s²)</label><input type="number" step="0.5" data-param="a_lat_max"></div>
+        <div class="param"><label>Cd·A arrasto (m²)</label><input type="number" step="0.1" data-param="cd_a"></div>
+        <div class="param"><label>Cl·A downforce (m²)</label><input type="number" step="0.1" data-param="cl_a"></div>
+        <div class="param"><label>Rolamento (Crr)</label><input type="number" step="0.001" data-param="crr"></div>
+        <div class="param"><label>Vel. máx (km/h)</label><input type="number" step="5" data-param="v_max_kmh"></div>
+      </fieldset>
+
+      <div class="stats">
+        <div><span>Comprimento do traçado</span><b id="stat-length">—</b></div>
+        <div><span>Velocidade média</span><b id="stat-vavg">—</b></div>
+        <div><span>Velocidade máxima</span><b id="stat-vmax">—</b></div>
+        <div><span>Pontos de controle</span><b id="stat-points">0</b></div>
+      </div>
+
+      <p class="status" id="status"></p>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
